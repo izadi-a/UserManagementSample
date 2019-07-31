@@ -26,15 +26,15 @@ public class UserController {
     }
 
     @DeleteMapping(path = {"/{id}"})
-    public void delete(@PathVariable("id") int id) {
+    public void delete(@Valid @PathVariable("id") int id, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            throw new UserNotFoundException(id);
+        }
         userService.deleteUser(id);
     }
 
     @PostMapping
     public User create(@Valid @RequestBody User user, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()){
-            throw new UserNotFoundException(1L);
-        }
         userService.insertUser(user);
         return user;
     }
