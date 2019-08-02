@@ -4,25 +4,23 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+/**
+ * Class that can be used to bootstrap and launch a Spring application from a Java main
+ * method.
+ *
+ * @author Ali Izadi
+ * @version 1.0
+ * @since 1.0
+ */
 @SpringBootApplication
-@EnableAspectJAutoProxy(proxyTargetClass=true)
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class SpringBootUserApplication {
+
+    /**
+     * Main entry point of the Spring Boot application.
+     */
     public static void main(String[] args) {
         SpringApplication.run(SpringBootUserApplication.class, args);
     }
 
-//    @Bean
-//    public MessageSource messageSource() {
-//        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-//        messageSource.setBasename("classpath:messages");
-//        messageSource.setDefaultEncoding("UTF-8");
-//        return messageSource;
-//    }
-
-//    @Bean
-//    public LocalValidatorFactoryBean validator(MessageSource messageSource) {
-//        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-//        bean.setValidationMessageSource(messageSource);
-//        return bean;
-//    }
 }

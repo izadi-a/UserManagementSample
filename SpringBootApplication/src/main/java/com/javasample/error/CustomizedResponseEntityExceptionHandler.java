@@ -22,10 +22,26 @@ import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
+/**
+ * Provides access to custom response entity exception handler.
+ *
+ * @author Izadi Ali
+ * @version 1.0
+ * @inheritDoc
+ * @since 1.0
+ */
 @ControllerAdvice
 @RestController
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * Provides handling for standard Spring MVC exceptions.
+     *
+     * @param ex      the target exception
+     * @param request the current request
+     * @return a {@code ResponseEntity} instance
+     * @since 1.0
+     */
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
         CustomErrorResponse customErrorResponse = new CustomErrorResponse(LocalDateTime.now(), ex.getMessage(),
@@ -33,11 +49,26 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity(customErrorResponse, INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * Provides handling for standard Spring MVC runtime exceptions.
+     *
+     * @param e the target runtimeException
+     * @return a {@code ResponseEntity} instance
+     * @since 1.0
+     */
     @ExceptionHandler({RuntimeException.class})
     public ResponseEntity<String> handleRunTimeException(RuntimeException e) {
         return error(INTERNAL_SERVER_ERROR, e);
     }
 
+    /**
+     * Provides handling for UserNotFoundException.
+     *
+     * @param ex      the target exception
+     * @param request the current request
+     * @return a {@code ResponseEntity} instance
+     * @since 1.0
+     */
     @ExceptionHandler({UserNotFoundException.class})
     public ResponseEntity<CustomErrorResponse> customHandleNotFound(Exception ex, WebRequest request) {
         CustomErrorResponse errors = new CustomErrorResponse();
@@ -48,17 +79,29 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Provides ResponseEntity object.
+     *
+     * @param e      the target exception
+     * @param status the current Http status
+     * @return a {@code ResponseEntity} instance
+     * @since 1.0
+     */
     private ResponseEntity<String> error(HttpStatus status, Exception e) {
         return ResponseEntity.status(status).body(e.getMessage());
     }
 
-    // @Validate For Validating Path Variables and Request Parameters
+    /**
+     * or Validating Path Variables and Request Parameters.
+     *
+     * @param response the current Http servlet response
+     * @since 1.0
+     */
     @ExceptionHandler(ConstraintViolationException.class)
     public void constraintViolationException(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.BAD_REQUEST.value());
     }
 
-    // error handle for @Valid
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
