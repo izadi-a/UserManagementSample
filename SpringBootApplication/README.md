@@ -1,11 +1,11 @@
-# UserManagementSample
+# SpringBootApplication
 
 
-UserManagementSample is a sample spring boot project.
+SpringBootApplication is a sample spring boot project.
 
 ### Tech
 
-UserManagementSample uses:
+SpringBootApplication uses:
 
 * [Apring Boot] - awesome web-based text editor
 
