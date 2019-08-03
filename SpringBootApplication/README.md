@@ -7,7 +7,7 @@ SpringBootApplication is a sample spring boot project.
 
 SpringBootApplication uses:
 
-* [Apring Boot] - awesome web-based text editor
+* [Spring Boot]
 
 ### Installation
 
