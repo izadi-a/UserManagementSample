@@ -28,5 +28,5 @@ mvn spring-boot:run
 ```
 #### URL
 ```sh
-http://localhost:8443/users
+http://localhost:8080/users
 ```
