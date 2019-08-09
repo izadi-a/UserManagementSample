@@ -1,10 +1,8 @@
-package com.javasample.service;
+package com.javasample.unit.service;
 
 import com.javasample.error.UserNotFoundException;
-import com.javasample.model.User;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Interface for user service operations.
@@ -21,7 +19,7 @@ public interface UserService<T> {
      * @param entity must not be {@literal null}.
      * @since 1.0
      */
-    void insert(T entity);
+    void create(T entity);
 
     /**
      * Retrieves all entities.
@@ -35,11 +33,11 @@ public interface UserService<T> {
      * Retrieves a user by its id.
      *
      * @param id must not be {@literal null}.
-     * @return the user with the given id or {@literal Optional#empty()} if none found
+     * @return the user with the given id or null
      * @throws UserNotFoundException
      * @since 1.0
      */
-    T getById(Integer id);
+    T findById(Integer id);
 
     /**
      * Deletes the given entity by id.
@@ -56,4 +54,5 @@ public interface UserService<T> {
      * @since 1.0
      */
     void update(T entity);
+
 }

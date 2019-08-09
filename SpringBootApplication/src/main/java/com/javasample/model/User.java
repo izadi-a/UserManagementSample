@@ -15,8 +15,10 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "User")
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     @Column(name = "ID")
     private Integer id;
     @NotNull(message = "Name is mandatory")
@@ -24,8 +26,6 @@ public class User {
     private String name;
     @Column(name = "FAMILY")
     private String family;
-    @NotNull
-    @Size(min = 4, message = "Name should have at least 2 characters")
     @Column(name = "USER_NAME")
     private String userName;
     @Column(name = "SALARY")
@@ -35,6 +35,17 @@ public class User {
      * Creates a user.
      */
     public User() {
+    }
+
+    /**
+     * Creates a user based on all params.
+     */
+    public User(Integer id, String name, String family, String userName, double salary) {
+        this.id = id;
+        this.name = name;
+        this.family = family;
+        this.userName = userName;
+        this.salary = salary;
     }
 
     /**

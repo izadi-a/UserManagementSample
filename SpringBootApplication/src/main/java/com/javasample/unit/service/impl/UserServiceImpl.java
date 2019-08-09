@@ -1,8 +1,8 @@
-package com.javasample.service.impl;
+package com.javasample.unit.service.impl;
 
 import com.javasample.model.User;
 import com.javasample.repository.UserRepository;
-import com.javasample.service.UserService;
+import com.javasample.unit.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService<User> {
      */
     @Override
     @Transactional
-    public void insert(User user) {
+    public void create(User user) {
         userRepository.save(user);
     }
 
@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService<User> {
      * @return A user by id.
      */
     @Override
-    public User getById(Integer id) {
+    public User findById(Integer id) {
         return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id.toString()));
     }
 
@@ -79,4 +79,5 @@ public class UserServiceImpl implements UserService<User> {
     public void update(User user) {
         userRepository.save(user);
     }
+
 }
